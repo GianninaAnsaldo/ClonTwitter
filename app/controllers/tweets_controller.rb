@@ -5,12 +5,12 @@ class TweetsController < ApplicationController
   def index
     if params[:query].present?
       if params[:query].to_i.to_s == params[:query]
-        @tweets = Tweet.where(id: params[:query]).page(params[:page]).per(10)
+        @tweets = Tweet.where(id: params[:query]).order(created_at: :desc).page(params[:page]).per(10)
       else
-        @tweets = Tweet.search_full_text(params[:query]).page(params[:page]).per(10)
+        @tweets = Tweet.search_full_text(params[:query]).order(created_at: :desc).page(params[:page]).per(10)
       end
     else
-      @tweets = Tweet.page(params[:page]).per(10)
+      @tweets = Tweet.order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 

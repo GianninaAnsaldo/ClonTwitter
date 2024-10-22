@@ -16,17 +16,19 @@
       <% end %>
    </div>
      <h1 class="text-center">Tweets</h1>
-   <div class="d-flex align-items-center mb-3">
-     <%= link_to "New tweet", new_tweet_path, class:"btn btn-primary" %>
+   <div class="d-flex align-items-center m-3 ">
+     <%= link_to "New", new_tweet_path, class:"btn btn-primary" %>
    </div>
-   <div id="tweets" class="container mt-4">
+   <div id="tweets" class="container mt-4 px-4">
       <div class="row">
          <% @tweets.each do |tweet| %>
-           <div class="col-md-4 mb-4">
+           <div class=" mb-4">
               <div class="card">
                 <div class="card-body">
                   <%= render tweet %>
-                  <%= link_to "Show this tweet", tweet %>
+                  <div class="text-end">
+                    <%= link_to "Show this tweet", tweet %>
+                  </div>
                 </div>
               </div>
            </div>    
