@@ -8,6 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-10.times do
+30.times do
     Tweet.create!(description: Faker::Quotes::Shakespeare.hamlet_quote, username: Faker::Name.name)
 end
