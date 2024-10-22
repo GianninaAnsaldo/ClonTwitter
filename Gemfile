@@ -55,3 +55,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "faker"
+
+gem "kaminari"
+
+gem "pg_search", "~> 2.3"

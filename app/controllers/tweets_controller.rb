@@ -3,7 +3,15 @@ class TweetsController < ApplicationController
 
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all
+    if params[:query].present?
+      if params[:query].to_i.to_s == params[:query]
+        @tweets = Tweet.where(id: params[:query]).page(params[:page]).per(10)
+      else
+        @tweets = Tweet.search_full_text(params[:query]).page(params[:page]).per(10)
+      end
+    else
+      @tweets = Tweet.page(params[:page]).per(10)
+    end
   end
 
   # GET /tweets/1 or /tweets/1.json

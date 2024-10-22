@@ -2,15 +2,45 @@
 
 <% content_for :title, "Tweets" %>
 
-<h1>Tweets</h1>
+<div class="card p-3 mb-4 shadow-sm">
+    <div class="mt-3">
+      <%= form_with url: tweets_path, method: :get, local: true do %>
+         <div class="form-group">
+             <%= text_field_tag :query, params[:query], placeholder: "Buscar", class:"form-control" %>
+             <%= submit_tag "Buscar", class: "mt-3 btn btn-primary" %>
+         </div>
+      <% end %>
+   </div>
+   <div class="d-flex align-items-center mb-3">
+     <h1>Tweets</h1>
+     <%= link_to "New tweet", new_tweet_path, class:"btn btn-primary" %>
+   </div>
+   <div id="tweets" class="container mt-4">
+      <div class="row">
+         <% @tweets.each do |tweet| %>
+           <div class="col-md-4 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <%= render tweet %>
+                  <%= link_to "Show this tweet", tweet %>
+                </div>
+              </div>
+           </div>    
+         <% end %>  
+      </div>    
+    </div>
+    <% if @tweets.any? %>
+      <ul>
+         <% @tweets.each do |tweet|%>
+         <% end %>
+      </ul>
+    <% else %>
+      <p>No se encontraron tweets.</p>
+    <% end%>
+    
+    <div class="mt-4">
+      <%= paginate @tweets %>
+    </div>
 
-<div id="tweets">
-  <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
-  <% end %>
 </div>
 
-<%= link_to "New tweet", new_tweet_path %>
